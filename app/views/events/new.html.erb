@@ -1,6 +1,8 @@
 <%= form_with model: @event, local:true do |f| %>
     <h4>年齢</h4>
     <%= f.text_field :age %>
+    <h4>月</h4>
+    <%= f.text_field :month %>
     <h4>出来事</h4>
     <%= f.text_area :event %>
     <h4>出来事詳細</h4>

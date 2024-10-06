@@ -6,16 +6,16 @@ class EventsController < ApplicationController
   def create
     event = Event.new(event_params)
     event.save
-    redirect_to event_path(event.id)
+    redirect_to event_by_age_path(event.id)
   end
 
   def index
-    @events = Event.all
-    @events_by_age = Event.all.group_by(&:age)
+    @events_by_age = Event.order(created_at: :desc).group_by(&:age)
   end
 
-  def show
-    @event = Event.find(params[:id])
+  def by_age
+    @age = params[:age].to_i
+    @events = Event.where(age: @age).order(created_at: :desc)
   end
 
   def edit
@@ -25,12 +25,12 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     event.update(event_params)
-    redirect_to event_path(event.id)
+    redirect_to events_by_age_path(event.id)
   end
 
   private
   def event_params
-    params.require(:event).permit(:age, :event, :event_detail)
+    params.require(:event).permit(:age, :month, :event, :event_detail)
   end
 
 end

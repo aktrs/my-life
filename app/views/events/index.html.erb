@@ -1,4 +1,6 @@
-<% @events_by_age.each do |age, event| %>
-    <p><%= @events_by_age%></p>
-    <p><%= event.event %></p>
+<% @events_by_age.each do |age, events| %>
+    <h2><%= link_to age, events_by_age_path(age) %></h2>
+      <% events.each do |event| %>
+        <p><%= event.event %></p>
+      <% end %>
 <% end %>

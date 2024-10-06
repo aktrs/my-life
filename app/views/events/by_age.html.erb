@@ -1,0 +1,8 @@
+<h1><%= @age %>歳の出来事一覧</h1>
+
+  <% @events.each do |event| %>
+    <h2><%= event.month %>月</h2>
+    <h3><%= event.event %></h3>
+    <p><%= event.event_detail %></p>
+    <%= link_to '戻る', :back %>
+  <% end %>
