@@ -4,5 +4,7 @@
     <h2><%= event.month %>月</h2>
     <h3><%= event.event %></h3>
     <p><%= event.event_detail %></p>
-    <%= link_to '戻る', :back %>
+    <%= link_to '編集する', edit_event_path(event.id) %><br>
   <% end %>
+
+  <%= link_to '投稿一覧ページへ', events_path %>

@@ -25,7 +25,7 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     event.update(event_params)
-    redirect_to events_by_age_path(event.id)
+    redirect_to events_by_age_path(event.age)
   end
 
   private
