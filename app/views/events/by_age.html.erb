@@ -4,7 +4,9 @@
     <h2><%= event.month %>月</h2>
     <h3><%= event.event %></h3>
     <p><%= event.event_detail %></p>
+    <%= attachment_image_tag event, :image, format: 'jpeg', size: "300x300" %><br>
     <%= link_to '編集する', edit_event_path(event.id) %><br>
+    <%= link_to '削除する', event_path(event.id), data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"} %><br>
   <% end %>
 
   <%= link_to '投稿一覧ページへ', events_path %>
