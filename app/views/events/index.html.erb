@@ -1,10 +1,18 @@
-<% @events_by_age.each do |age, events| %>
-    <% if age.present? %>
-      <h2><%= link_to age, events_by_age_path(age)  %></h2>
+<div class="cover-index mt-5">
+  <div class="container d-flex">
+    <div class="row age">
+      <% @events_by_age.each do |age, events| %>
+        <% if age.present? %>
+          <h2><%= link_to age, events_by_age_path(age)  %></h2>
+    </div>
+    <div class="row event">
       <% events.each do |event| %>
         <p><%= event.event %></p>
       <%= attachment_image_tag event, :image, format: 'jpeg', size: '100x100' %>
       <% end %>
-    <% end %>
-<% end %>
+    </div>
+      <% end %>
+      <% end %>
+  </div>
+</div>
 
