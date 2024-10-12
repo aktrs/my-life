@@ -1,12 +1,20 @@
-<h1><%= @age %>歳の出来事一覧</h1>
-
-  <% @events.each do |event| %>
-    <h2><%= event.month %>月</h2>
-    <h3><%= event.event %></h3>
-    <p><%= event.event_detail %></p>
-    <%= attachment_image_tag event, :image, format: 'jpeg', size: "300x300" %><br>
-    <%= link_to '編集する', edit_event_path(event.id) %><br>
+<div class="cover-by-age">
+  <div class="container d-flex flex-column">
+    <div class="row mt-5">
+      <h1><%= @age %>歳の出来事一覧</h1>
+    </div>
+    <div class="col-12 col-md-4 mb-3">
+      <div class="border border-primary">
+        <% @events.each do |event| %>
+          <h2><%= event.month %>月</h2>
+          <h3><%= event.event %></h3>
+          <p><%= event.event_detail %></p>
+          <%= attachment_image_tag event, :image, format: 'jpeg', size: "200x150" %><br>
+      </div>
+    </div>
+    <%= link_to '編集する', edit_event_path(event.id), class:"btn btn-primary" %><br>
     <%= link_to '削除する', event_path(event.id), data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"} %><br>
   <% end %>
-
   <%= link_to '投稿一覧ページへ', events_path %>
+  </div>
+</div>

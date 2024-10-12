@@ -29,11 +29,6 @@
     color:#CCFFFF;
 }
 
-.arrow{
-   font-size:30px;
-   color:#3366FF; 
-}
-
 .cover-new{
     min-height:100vh;
     width: 100%;
@@ -54,4 +49,18 @@
 .cover-new .form-control{
     border-radius:10px;
     border:2px solid #999999
+}
+
+.cover-by-age{
+    min-height:100vh;
+    width: 100%;
+    background-image: url(/assets/by_age_image.jpg);
+    background-color: rgba(255,255,255,0.4);
+    background-blend-mode: lighten;
+    background-size:100% 100%; 
+}
+
+.cover-by-age h1{
+    font-size:50px;
+    color:#0000FF;
 }
