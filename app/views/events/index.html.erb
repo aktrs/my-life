@@ -1,16 +1,22 @@
 <div class="cover-index">
   <div class="container d-flex flex-column">
-    <div class="row mt-5 index-left w-100">
-      <% @events_by_age.each do |age, events| %>
+    <div class="row mt-5 index-left">
+      <% @events_by_age.each_with_index do |(age, events), index| %>
         <% if events.present? %>
-          <div class="border border-primary col-sm-4 mb-3">
-            <% if age.present? %>
-              <h2><%= link_to age, events_by_age_path(age), class:"age" %></h2>
-            <% end %>
-            <% events.each do |event| %>
-              <p><%= event.event %></p>
-              <%= attachment_image_tag event, :image, format:'jpeg',size:'100x100' %>
-            <% end %>
+          <div class="col-12 col-md-4 mb-3">
+            <div class="border border-primary">
+              <% if age.present? %>
+                <h2><%= link_to "#{age} years old", events_by_age_path(age), class:"age"%></h2>
+              <% end %>
+              <ul>
+                <% events.each do |event| %>
+                  <li>
+                    <p class="event-text"><%= event.event %></p>
+                    <%= attachment_image_tag event, :image, format:'jpeg',size:'200x150'%>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         <% end %>
       <% end %>

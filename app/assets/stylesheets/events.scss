@@ -11,12 +11,25 @@
     font-family: cursive;
     font-size: 50px;
     text-decoration:none;
-    color: #0d6efd;
+    color: #00FFFF;
 }
 
 .border{
-    font-family:cursive;
     font-size:30px;
-    border-radius:30px;
+    border-radius:50px;
     border-spacing:10px 10px;
+    margin:30px;
+    margin-bottom:50px;
+    padding:15px;
+    background-color:rgba(#0000,0.3);
+}
+
+.event-text{
+    font-size:25px;
+    color:#CCFFFF;
+}
+
+.arrow{
+   font-size:30px;
+   color:#3366FF; 
 }
