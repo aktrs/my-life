@@ -4,7 +4,7 @@
       <% @events_by_age.each_with_index do |(age, events), index| %>
         <% if events.present? %>
           <div class="col-12 col-md-4 mb-3">
-            <div class="border border-primary">
+            <div class="border border-primary index-border">
               <% if age.present? %>
                 <h2><%= link_to "#{age} years old", events_by_age_path(age), class:"age"%></h2>
               <% end %>

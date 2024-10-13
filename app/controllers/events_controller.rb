@@ -20,6 +20,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @age = @event.age
   end
 
   def update
