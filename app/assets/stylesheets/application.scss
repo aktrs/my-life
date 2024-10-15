@@ -15,3 +15,31 @@
  */
 
  @import "bootstrap";
+
+ header{
+    display:flex;
+    background-color:black;
+    align-items:center;
+ }
+
+ header div:first-child{
+    margin-right: auto;
+    font-size:25px;
+ }
+
+ header div:last-child{
+    margin-right:30px;
+ }
+
+ header div{
+    margin-left:30px;
+    line-height:30px;
+ }
+
+ a:hover{
+    color:aqua!important;
+ }
+
+ .nav-link{
+    text-decoration:none;
+ }
