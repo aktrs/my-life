@@ -67,3 +67,11 @@ gem 'bootstrap', '~>5.3.0'
 gem 'jquery-rails'
 
 gem "sassc-rails"
+
+gem 'gon'
+gem 'chart-js-rails'
+
+gem 'chartkick'
+gem 'groupdate'
+
+gem 'devise'

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
+  get "graphs/new"
   resources :events
+  resources :graphs
   get 'events/age/:age', to: 'events#by_age', as: 'events_by_age'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
