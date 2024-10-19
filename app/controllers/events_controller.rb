@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @event = Event.new
   end
@@ -24,9 +25,12 @@ class EventsController < ApplicationController
   end
 
   def update
-    event = Event.find(params[:id])
-    event.update(event_params)
-    redirect_to events_by_age_path(event.age)
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to events_by_age_path(event.age)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

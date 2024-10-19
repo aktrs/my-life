@@ -5,9 +5,6 @@ import "controllers"
 //= require jquery3
 //= require popper
 //= require bootstrap
-//= require chart
 //= require gon
 //= require chartkick
 //= require Chart.bundle
-
-import "chartkick/chart.js"
