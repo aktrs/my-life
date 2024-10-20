@@ -8,3 +8,5 @@ import "controllers"
 //= require gon
 //= require chartkick
 //= require Chart.bundle
+
+import "chartkick/chart.js"

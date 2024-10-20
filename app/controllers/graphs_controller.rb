@@ -5,29 +5,24 @@ class GraphsController < ApplicationController
   end
 
   def create
-    graph = Graph.new(graph_params)
-    Rails.logger.debug graph_params.inspect
-    if graph.save
-       redirect_to graphs_path
+    @graph = current_user.graphs.new(graph_params) 
+    if @graph.save
+      redirect_to graphs_path, notice: 'グラフが追加されました。'
     else
-       Rails.logger.debug graph.errors.full_messages.inspect
-       respond_to do |format|
-        format.html do
-          @graph = graph
-          render :new
-        end
-        format.json{render json: {errors:graph.errors.full_messages}, status: :unprocessable_entity}
-      end
+      render :new
     end
   end
-
+  
   def index
-    @graphs = Graph.all
-    @data_for_graph = Graph.group(:age).sum(:value)
+    @graphs = Graph.where(user: current_user)
+    @data_for_graph = @graphs.map do |graph|
+      [graph.age, graph.value]
+    end.to_h
     Rails.logger.debug @data_for_graph.inspect
   end
 
   private
+
   def graph_params
     params.require(:graph).permit(:age, :value, :comment)
   end

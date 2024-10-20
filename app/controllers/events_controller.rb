@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   def by_age
     @age = params[:age].to_i
     @events = Event.where(age: @age).order(created_at: :desc)
+    puts @events.inspect
   end
 
   def edit
