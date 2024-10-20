@@ -18,7 +18,7 @@ class GraphsController < ApplicationController
     @data_for_graph = @graphs.map do |graph|
       [graph.age, graph.value]
     end.to_h
-    Rails.logger.debug @data_for_graph.inspect
+    Rails.logger.debug "Data for graph: #{@data_for_graph.inspect}"
   end
 
   private
