@@ -1,8 +1,22 @@
-<h1 class="motivation-graph">モチベーショングラフ</h1>
-  <div class="container">
-    <%= line_chart @data_for_graph,
-    width: "800px",
-    height: "500px",
-    min: -100,
-    max: 100 %>
+<div class="cover-graph">
+  <div class="container d-flex flex-column align-items-center">
+      <h1 class="font-weight-normal mt-5 mb-3">モチベーショングラフ</h1>
+        <div class="button-container">
+          <%= link_to "追加", graphs_new_path, class:"btn btn-warning" %>
+        </div>
+          <div class="graph-container d-flex flex-column align-items-center">
+            <%= line_chart @data_for_graph,
+              width: "1000px",
+              height: "500px",
+              min: -100,
+              max: 100,
+              colors: ["#0000FF"],
+              stroke_width: 10,
+              dataset:{
+                borderColor: "#FF0000",
+                borderWidth: 3
+              }
+            %>
+          </div>
   </div>
+</div>

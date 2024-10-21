@@ -12,13 +12,22 @@
     border:2px solid #999999
 }
 
-.motivation-graph{
-    text-align:center;
-    margin-top:20px;
+.cover-graph{
+    min-height:100vh;
+    width: 100%;
+    background-image: url(/assets/graph_image.jpg);
+    background-color: rgba(255,255,255,0.4);
+    background-blend-mode: lighten;
+    background-size:100% 100%; 
 }
 
-.container{
-    max-width:800px;
-    margin:0 auto;
-    padding:20px;
+.graph-container{
+    max-width:1000px;
+    margin-top:30px;
+}
+
+.button-container{
+    display:flex;
+    justify-content:center;
+    margin-top:30px;
 }

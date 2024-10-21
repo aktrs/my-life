@@ -9,7 +9,5 @@ import "controllers"
 //= require chartkick
 //= require Chart.bundle
 
-import Chartkick from "chartkick";
-import Chart from "chart.js";
-
-Chartkick.use(Chart);
+import "chartkick"
+import "Chart.bundle"
