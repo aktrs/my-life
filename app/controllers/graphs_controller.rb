@@ -21,6 +21,10 @@ class GraphsController < ApplicationController
     Rails.logger.debug "Data for graph: #{@data_for_graph.inspect}"
   end
 
+  def edit
+    @graph = Graph.find(params[:id])
+  end
+
   private
 
   def graph_params
