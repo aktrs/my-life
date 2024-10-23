@@ -1,22 +1,27 @@
 <div class="cover-graph">
   <div class="container d-flex flex-column align-items-center">
-      <h1 class="font-weight-normal mt-5 mb-3">モチベーショングラフ</h1>
-        <div class="button-container">
-          <%= link_to "追加", graphs_new_path, class:"btn btn-warning" %>
-        </div>
-          <div class="graph-container d-flex flex-column align-items-center">
-            <%= line_chart @data_for_graph,
-              width: "1000px",
-              height: "500px",
-              min: -100,
-              max: 100,
-              colors: ["#0000FF"],
-              stroke_width: 10,
-              dataset:{
-                borderColor: "#FF0000",
-                borderWidth: 3
-              }
-            %>
-          </div>
+    <h1 class="font-weight-normal mt-5 mb-3">モチベーショングラフ</h1>
+    <div class="button-container">
+      <%= link_to "追加", graphs_new_path, class:"btn btn-warning" %>
+    </div>
+    <div class="graph-container d-flex flex-column align-items-center">
+      <%= line_chart @data_for_graph,
+        width: "1000px",
+        height: "500px",
+        min: -100,
+        max: 100,
+        colors: ["#0000FF"],
+        stroke_width: 10,
+        dataset:{
+          borderColor: "#000099",
+          borderWidth: 3,
+          pointRadius: 5,
+          pointHoverRadius: 10,
+          pointBackgroundColor: "rgba(255, 255, 255, 1)",
+          pointBorderColor: "#0000FF",
+        }
+      %>
+    </div> 
   </div>
 </div>
+

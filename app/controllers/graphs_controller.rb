@@ -18,7 +18,12 @@ class GraphsController < ApplicationController
     @data_for_graph = @graphs.map do |graph|
       [graph.age, graph.value]
     end.to_h
-    Rails.logger.debug "Data for graph: #{@data_for_graph.inspect}"
+
+    @graph_links = @graphs.map do |graph|
+      [graph.age, edit_graph_path(graph)]
+    end.to_h
+
+      Rails.logger.debug "Data for graph: #{@data_for_graph.inspect}"
   end
 
   def edit
