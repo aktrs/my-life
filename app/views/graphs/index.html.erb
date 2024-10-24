@@ -1,6 +1,6 @@
 <div class="cover-graph">
   <div class="container d-flex flex-column align-items-center">
-    <h1 class="font-weight-normal mt-5 mb-3">モチベーショングラフ</h1>
+    <h1 class="font-weight-normal mt-5 mb-3">モチベーションのグラフ</h1>
     <div class="button-container">
       <%= link_to "追加", graphs_new_path, class:"btn btn-warning" %>
     </div>
@@ -21,6 +21,16 @@
           pointBorderColor: "#0000FF",
         }
       %>
+      <% @data_with_links.each do |data| %>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            const point = document.querySelector(`circle[data-x="${data[:age]}"][data-y="${data[:value]}"]`);
+            if (point) {
+              point.setAttribute('data-link', '<%= j data[:link] %>');
+            }
+         });
+        </script>
+      <% end %>
     </div> 
   </div>
 </div>
