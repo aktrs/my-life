@@ -24,10 +24,36 @@
       <% @data_with_links.each do |data| %>
         <script>
           document.addEventListener("DOMContentLoaded", function() {
-            const point = document.querySelector(`circle[data-x="${data[:age]}"][data-y="${data[:value]}"]`);
+            const point = document.querySelector(`circle[data-x="<%= data[:age] %>"][data-y="<%= data[:value] %>"]`);
             if (point) {
               point.setAttribute('data-link', '<%= j data[:link] %>');
-            }
+
+            const comment = document.createElement('div');
+            comment.className = 'comment';
+            comment.innerText = '<%= j data[:comment] %>';
+            comment.style.position = 'absolute';
+            comment.style.display = 'none';
+
+            const graphContainer = document.querySelector('.graph-container');
+            graphContainer.appendChild(comment);
+
+            point.addEventListener('click', function(){
+              const link = point.getAttribute('data-link');
+              if (link){
+                window.location.href = link;
+              }
+            });
+
+            point.addEventListener('mouseover', function(event){
+              comment.style.display = 'block';
+              comment.style.left = `${event.clientX}px`;
+              comment.style.top = `${event.clientY}px`;
+            });
+
+            point.addEventListener('mouseout', function(){
+              comment.style.display = 'none';
+            });
+          }
          });
         </script>
       <% end %>

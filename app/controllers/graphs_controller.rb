@@ -16,8 +16,8 @@ class GraphsController < ApplicationController
   def index
     @graphs = Graph.where(user: current_user)
     @data_for_graph = @graphs.map do |graph|
-      [graph.age, graph.value]
-    end.to_h
+      [graph.age, graph.value, graph.comment]
+    end
 
     @graph_links = @graphs.map do |graph|
       [graph.age, edit_graph_path(graph)]
