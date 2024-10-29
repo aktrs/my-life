@@ -28,10 +28,17 @@ class GraphsController < ApplicationController
     end  
 
       Rails.logger.debug "Data for graph: #{@data_for_graph.inspect}"
+      Rails.logger.debug "Data with links: #{@data_with_links.inspect}"
   end
 
   def edit
     @graph = Graph.find(params[:id])
+  end
+
+  def update
+    graph = Graph.find(params[:id])
+    graph.update(graph_params)
+    redirect_to graphs_path
   end
 
   private

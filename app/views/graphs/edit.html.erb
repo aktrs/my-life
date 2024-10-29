@@ -17,7 +17,8 @@
           <label class="form-label">コメント</label>
             <%= f.text_area :comment, rows:10, class:"form-control" %>
         </div>
-        <%= f.submit '追加する', class: "btn btn-primary" %>
+        <%= f.submit '保存する', class: "btn btn-primary" %>
+        <%= link_to '戻る', graphs_path, class:"btn btn-secondary" %>
       <% end %>
     </div>
   </div>
