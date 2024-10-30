@@ -23,25 +23,25 @@
       %>
 
       <script>
-document.addEventListener("DOMContentLoaded", function() {
-  <% @data_with_links.each do |data| %>
-    (function() {
-      const point = document.querySelector(`circle[data-x="<%= data[:age] %>"][data-y="<%= data[:value] %>"]`);
-      if (point) {
-        point.setAttribute('data-link', '<%= j data[:link] %>');
-        point.addEventListener('click', function() {
-          const link = point.getAttribute('data-link');
-          if (link) {
-            window.location.href = link; 
-          }
-        });
-      } else {
-        console.error("Point not found for age:", "<%= data[:age] %>", "and value:", "<%= data[:value] %>"); 
-      }
-    })();
-  <% end %>
-});
-</script>
+      document.addEventListener("DOMContentLoaded", function() {
+        <% @data_with_links.each do |data| %>
+          (function() {
+            const point = document.querySelector(`circle[data-x="<%= data[:age] %>"][data-y="<%= data[:value] %>"]`);
+            if (point) {
+              point.setAttribute('data-link', '<%= j data[:link] %>');
+              point.addEventListener('click', function() {
+                const link = point.getAttribute('data-link');
+                if (link) {
+                  window.location.href = link; 
+                }
+              });
+            } else {
+              console.error("Point not found for age:", "<%= data[:age] %>", "and value:", "<%= data[:value] %>"); 
+            }
+          })();
+        <% end %>
+      });
+      </script>
 
     </div> 
   </div>
