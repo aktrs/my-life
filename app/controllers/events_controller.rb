@@ -12,6 +12,9 @@ class EventsController < ApplicationController
 
   def index
     @events_by_age = Event.order(age: :desc, created_at: :desc).group_by(&:age)
+    @events_by_age.each do |age, events|
+    first_event_image = events.first.image if events.present?
+  end
   end
 
   def by_age

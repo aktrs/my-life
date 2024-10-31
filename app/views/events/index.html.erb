@@ -12,7 +12,9 @@
                 <% events.each do |event| %>
                   <li>
                     <p class="event-text"><%= event.event %></p>
-                    <%= attachment_image_tag event, :image, format:'jpeg',size:'200x150'%>
+                    <div class="image-container">
+                      <%= attachment_image_tag event, :image, format:'jpeg',size:'200x150', class:'round-image'%>
+                    </div>
                   </li>
                 <% end %>
               </ul>
