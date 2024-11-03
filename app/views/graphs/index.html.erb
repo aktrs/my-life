@@ -12,38 +12,67 @@
         max: 100,
         colors: ["#0000FF"],
         stroke_width: 10,
-        dataset:{
+        dataset: {
           borderColor: "#000099",
-          borderWidth: 3,
+          borderWidth: 5,
           pointRadius: 5,
           pointHoverRadius: 10,
           pointBackgroundColor: "rgba(255, 255, 255, 1)",
           pointBorderColor: "#0000FF",
+        },
+        options: {
+          scales: {
+            x: {
+              grid: {
+                color: "#000", 
+                lineWidth: 20, 
+              },
+            },
+            y: {
+              grid: {
+                color: "#000", 
+                lineWidth: 20, 
+              },
+            },
+          },
         }
       %>
-
-      <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        <% @data_with_links.each do |data| %>
-          (function() {
-            const point = document.querySelector(`circle[data-x="<%= data[:age] %>"][data-y="<%= data[:value] %>"]`);
-            if (point) {
-              point.setAttribute('data-link', '<%= j data[:link] %>');
-              point.addEventListener('click', function() {
-                const link = point.getAttribute('data-link');
-                if (link) {
-                  window.location.href = link; 
-                }
-              });
-            } else {
-              console.error("Point not found for age:", "<%= data[:age] %>", "and value:", "<%= data[:value] %>"); 
-            }
-          })();
-        <% end %>
-      });
-      </script>
-
     </div> 
   </div>
 </div>
 
+<script>
+document.addEventListener("turbolinks:load", function() {
+  const canvas = document.getElementById('chart-1');
+
+  if (!canvas) {
+    alert("Canvas element not found");
+    return; 
+  }else{
+    alert("Canvas found"); 
+  }
+  const pointRadius = 5;
+  canvas.addEventListener('click', function(event) {
+    alert("Canvas clicked"); 
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    <% @data_with_links.each_with_index do |data, index| %>
+      const pointX<%= index %> = <%= data[:age] %>;
+      const pointY<%= index %> = <%= data[:value] %>;
+      const id<%= index %> = <%= data[:id] %>;
+
+      if (mouseX >= pointX<%= index %> - pointRadius && mouseX <= pointX<%= index %> + pointRadius &&
+          mouseY >= pointY<%= index %> - pointRadius && mouseY <= pointY<%= index %> + pointRadius) {
+        const link = `/graphs/${id<%= index %>}/edit`; 
+        window.location.href = link; 
+      }
+      console.log(`Mouse Position: (${mouseX}, ${mouseY})`);
+      console.log(`Point Position: (${pointX<%= index %>}, ${pointY<%= index %>})`);
+
+    <% end %>
+  });
+});
+
+</script>

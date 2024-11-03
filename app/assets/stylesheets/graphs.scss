@@ -23,14 +23,8 @@
 
 .graph-container{
     position:relative;
-    z-index:1;
     max-width:1000px;
     margin-top:30px;
-}
-
-svg{
-    position:relative;
-    z-index:2;
 }
 
 .button-container{
@@ -44,7 +38,6 @@ svg{
     border:1px solid #ccc;
     padding:5px;
     border-radius:5px;
-    z-index:10;
 }
 
 .graph-edit{
@@ -54,4 +47,9 @@ svg{
     background-color: rgba(255,255,255,0.4);
     background-blend-mode: lighten;
     background-size:100% 100%;
+}
+
+canvas {
+    border: 10px solid black; /* Canvasの境界を視覚化 */
+    background-color:white;
 }
