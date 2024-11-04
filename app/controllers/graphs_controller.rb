@@ -27,8 +27,8 @@ class GraphsController < ApplicationController
       { age: graph.age, value: graph.value, id: graph.id, link: edit_graph_path(graph) }
     end  
 
-      Rails.logger.debug "Data for graph: #{@data_for_graph.inspect}"
-      Rails.logger.debug "Data with links: #{@data_with_links.inspect}"
+    Rails.logger.debug "Data for graph: #{@data_for_graph.inspect}"
+    Rails.logger.debug "Data with links: #{@data_with_links.inspect}"
   end
 
   def edit
@@ -38,6 +38,12 @@ class GraphsController < ApplicationController
   def update
     graph = Graph.find(params[:id])
     graph.update(graph_params)
+    redirect_to graphs_path
+  end
+
+  def destroy
+    graph = Graph.find(params[:id])
+    graph.destroy
     redirect_to graphs_path
   end
 

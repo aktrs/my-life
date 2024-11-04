@@ -42,37 +42,20 @@
 </div>
 
 <script>
-document.addEventListener("turbolinks:load", function() {
-  const canvas = document.getElementById('chart-1');
-
-  if (!canvas) {
-    alert("Canvas element not found");
-    return; 
-  }else{
-    alert("Canvas found"); 
-  }
-  const pointRadius = 5;
-  canvas.addEventListener('click', function(event) {
-    alert("Canvas clicked"); 
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-
-    <% @data_with_links.each_with_index do |data, index| %>
-      const pointX<%= index %> = <%= data[:age] %>;
-      const pointY<%= index %> = <%= data[:value] %>;
-      const id<%= index %> = <%= data[:id] %>;
-
-      if (mouseX >= pointX<%= index %> - pointRadius && mouseX <= pointX<%= index %> + pointRadius &&
-          mouseY >= pointY<%= index %> - pointRadius && mouseY <= pointY<%= index %> + pointRadius) {
-        const link = `/graphs/${id<%= index %>}/edit`; 
-        window.location.href = link; 
-      }
-      console.log(`Mouse Position: (${mouseX}, ${mouseY})`);
-      console.log(`Point Position: (${pointX<%= index %>}, ${pointY<%= index %>})`);
-
-    <% end %>
-  });
+document.addEventListener("turbo:load", function() {
+  const chartElement = document.getElementById('chart-1');
+  const dataWithLinks = <%= raw(@data_with_links.to_json) %>;
+  chartElement.onclick = function(event) {
+    const chart = Chart.getChart(event.target);
+    const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
+    if (points.length) {
+      const index = points[0].index; // クリックされた点のインデックスを取得
+      const id = dataWithLinks[index].id; // idを取得
+      console.log('Clicked point index:', index);
+      console.log('Corresponding ID:', id);
+      const link = `/graphs/${id}/edit`; // リンクを作成
+      window.location.href = link; // リダイレクト
+    }
+  };
 });
-
 </script>
