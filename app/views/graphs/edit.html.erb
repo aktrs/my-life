@@ -18,7 +18,7 @@
             <%= f.text_area :comment, rows:10, class:"form-control" %>
         </div>
         <%= f.submit '保存する', class: "btn btn-primary" %>
-        <%= link_to '削除', graph_path(@graph.id), data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"}, class:"btn btn-danger" %><br>
+        <%= link_to '削除する', graph_path(@graph.id), data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"}, class:"btn btn-danger" %><br>
         <%= link_to '戻る', graphs_path, class:"btn btn-secondary" %>
       <% end %>
     </div>

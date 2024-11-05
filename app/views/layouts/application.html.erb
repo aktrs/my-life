@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
     <header>
       <div>
         <%= link_to image_tag("logo.png", alt:"My Life", style:"width:130px; height:auto;"),root_path, class: "text-white nav-link" %>
@@ -20,6 +21,7 @@
       <div><%= link_to "グラフ", graphs_path, class:"text-white nav-link" %></div>
       <div><%= link_to "ログアウト", destroy_user_session_path, data:{ turbo_method: :delete }, class: "text-white nav-link" %></div>
     </header>
+    <% end %>
     <%= yield %>
   </body>
 </html>
