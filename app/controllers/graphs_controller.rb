@@ -14,7 +14,7 @@ class GraphsController < ApplicationController
   end
   
   def index
-    @graphs = Graph.where(user: current_user)
+    @graphs = Graph.where(user: current_user).order(:age)
     @data_for_graph = @graphs.map do |graph|
       [graph.age, graph.value, graph.comment]
     end

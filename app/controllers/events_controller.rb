@@ -6,35 +6,39 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = Event.new(user: current_user)
   end
 
   def create
-    event = Event.new(event_params)
-    event.save
-    redirect_to events_by_age_path(event.age)
+    @event = Event.new(event_params)
+    @event.user = current_user
+    if @event.save
+      redirect_to events_by_age_path(@event.age)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def index
-    @events_by_age = Event.order(age: :desc, created_at: :desc).group_by(&:age)
+    @events_by_age = current_user.events.order(age: :desc, created_at: :desc).group_by(&:age)
     @events_by_age.each do |age, events|
     first_event_image = events.first.image if events.present?
-  end
+    end
   end
 
   def by_age
     @age = params[:age].to_i
-    @events = Event.where(age: @age).order(created_at: :desc)
+    @events = current_user.events.where(age: @age).order(created_at: :desc)
     puts @events.inspect
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
     @age = @event.age
   end
 
   def update
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
     if @event.update(event_params)
       redirect_to events_by_age_path(event.age)
     else
@@ -43,7 +47,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    event = Event.find(params[:id])
+    event = current_user.events.find(params[:id])
     event.destroy
     redirect_to events_by_age_path(event.age)
   end

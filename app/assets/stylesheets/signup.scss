@@ -4,11 +4,16 @@
     text-decoration:none;
 }
 
+html, body{
+    height:100%;
+    margin:0;
+    background: linear-gradient(to right, rgba(13,128,214,0.42),rgba(0,107,139,0.12));
+}
+
 .bg{
     width:100%;
     height:100px;
     padding-top:70px;
-    background:linear-gradient(to right, rgba(13,128,214,0.42), rgba(0,107,139,0.12));
 }
 
 .box{
