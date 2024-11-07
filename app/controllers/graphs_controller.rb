@@ -9,7 +9,7 @@ class GraphsController < ApplicationController
     if @graph.save
       redirect_to graphs_path, notice: 'グラフが追加されました。'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
   

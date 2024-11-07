@@ -12,8 +12,10 @@
             <p><%= event.event_detail %></p>
             <%= attachment_image_tag event, :image, format: 'jpeg', size: "200x150" %><br>
           </div>
-          <%= link_to '編集する', edit_event_path(event.id), class:"btn btn-primary edit" %>
-          <%= link_to '削除する', event_path(event.id), data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"}, class:"btn btn-danger" %><br>
+          <% if @event.user == current_user %>
+            <%= link_to '編集する', edit_event_path(event.id), class:"btn btn-primary edit" %>
+            <%= link_to '削除する', event_path(event.id), data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"}, class:"btn btn-danger" %><br>
+          <% end %>
         </div>
       <% end %>
       <div class="text-left mt-3">
