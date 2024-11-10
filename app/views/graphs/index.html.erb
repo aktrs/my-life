@@ -1,6 +1,6 @@
 <div class="cover-graph">
   <div class="container d-flex flex-column align-items-center">
-    <h1 class="font-weight-normal mt-5 mb-3">モチベーションgraph</h1>
+    <h1 class="font-weight-normal mt-5 mb-3">モチベーショングラフ</h1>
     <div class="button-container">
       <%= link_to "追加", graphs_new_path, class:"btn btn-warning" %>
     </div>
@@ -21,6 +21,18 @@
           pointBorderColor: "#0000FF",
         },
         options: {
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(tooltipItem) {
+                  const index = tooltipItem.dataIndex;
+                  const comment = dataWithLinks[index].comment;
+                  return `コメント: ${comment}`;
+                }
+              }
+            }
+          },
+
           scales: {
             x: {
               grid: {
@@ -51,6 +63,10 @@ document.addEventListener("turbo:load", function() {
     if (points.length) {
       const index = points[0].index; // クリックされた点のインデックスを取得
       const id = dataWithLinks[index].id; // idを取得
+
+      const comment = dataWithLinks[index].comment;
+      alert(comment);
+
       console.log('Clicked point index:', index);
       console.log('Corresponding ID:', id);
       const link = `/graphs/${id}/edit`; // リンクを作成
