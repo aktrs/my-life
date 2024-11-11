@@ -6,6 +6,7 @@
     </div>
     <div class="graph-container d-flex flex-column align-items-center">
       <%= line_chart @data_for_graph,
+        id: "chart-1",
         width: "1000px",
         height: "500px",
         min: -100,
@@ -24,10 +25,11 @@
           plugins: {
             tooltip: {
               callbacks: {
-                label: function(tooltipItem) {
+                label: function(tooltipItem){
                   const index = tooltipItem.dataIndex;
-                  const comment = dataWithLinks[index].comment;
-                  return `コメント: ${comment}`;
+                  const comment = window.dataWithLinks ? window.dataWithLinks[index].comment : 'コメントなし';
+                  console.log('Tooltip Item:', tooltipItem);
+                  return 'コメント: ' + comment;
                 }
               }
             }
@@ -56,16 +58,19 @@
 <script>
 document.addEventListener("turbo:load", function() {
   const chartElement = document.getElementById('chart-1');
-  const dataWithLinks = <%= raw(@data_with_links.to_json) %>;
+  window.dataWithLinks = <%= raw(@data_with_links.to_json) %>;
+  console.log('dataWithLinks:', window.dataWithLinks);
   chartElement.onclick = function(event) {
     const chart = Chart.getChart(event.target);
     const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
     if (points.length) {
       const index = points[0].index; // クリックされた点のインデックスを取得
-      const id = dataWithLinks[index].id; // idを取得
+      const id = window.dataWithLinks[index].id; // idを取得
 
-      const comment = dataWithLinks[index].comment;
-      alert(comment);
+      console.log('Clickd point data:', window.dataWithLinks[index]);
+
+      chart.tooltip.setActiveElements([{ datasetIndex: points[0].datasetIndex, index: points[0].index}], {x: event.x, y: event.y});
+      chart.update();
 
       console.log('Clicked point index:', index);
       console.log('Corresponding ID:', id);
