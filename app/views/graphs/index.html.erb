@@ -22,19 +22,6 @@
           pointBorderColor: "#0000FF",
         },
         options: {
-          plugins: {
-            tooltip: {
-              callbacks: {
-                label: function(tooltipItem){
-                  const index = tooltipItem.dataIndex;
-                  const comment = window.dataWithLinks ? window.dataWithLinks[index].comment : 'コメントなし';
-                  console.log('Tooltip Item:', tooltipItem);
-                  return 'コメント: ' + comment;
-                }
-              }
-            }
-          },
-
           scales: {
             x: {
               grid: {
@@ -55,25 +42,19 @@
   </div>
 </div>
 
+<div id="comment-container" style="margin-top: 20px; font-size: 18px;">
+</div>
+
 <script>
 document.addEventListener("turbo:load", function() {
   const chartElement = document.getElementById('chart-1');
-  window.dataWithLinks = <%= raw(@data_with_links.to_json) %>;
-  console.log('dataWithLinks:', window.dataWithLinks);
+  const dataWithLinks = <%= raw(@data_with_links.to_json) %>;
   chartElement.onclick = function(event) {
     const chart = Chart.getChart(event.target);
     const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
     if (points.length) {
       const index = points[0].index; // クリックされた点のインデックスを取得
-      const id = window.dataWithLinks[index].id; // idを取得
-
-      console.log('Clickd point data:', window.dataWithLinks[index]);
-
-      chart.tooltip.setActiveElements([{ datasetIndex: points[0].datasetIndex, index: points[0].index}], {x: event.x, y: event.y});
-      chart.update();
-
-      console.log('Clicked point index:', index);
-      console.log('Corresponding ID:', id);
+      const id = dataWithLinks[index].id; // idを取得
       const link = `/graphs/${id}/edit`; // リンクを作成
       window.location.href = link; // リダイレクト
     }
