@@ -6,5 +6,5 @@ class Graph < ApplicationRecord
     belongs_to :user
 
     validates :age, presence: true, length: { maximum: 2 }
-    validates :value, presence: true, length: { maximum: 2 }
+    validates :value, presence: true, length: { maximum: 4 }
 end

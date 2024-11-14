@@ -4,41 +4,43 @@
     <div class="button-container">
       <%= link_to "追加", graphs_new_path, class:"btn btn-warning" %>
     </div>
-    <div class="graph-container d-flex flex-column align-items-center">
-      <%= line_chart @data_for_graph,
-        id: "chart-1",
-        width: "1000px",
-        height: "500px",
-        min: -100,
-        max: 100,
-        colors: ["#0000FF"],
-        stroke_width: 10,
-        dataset: {
-          borderColor: "#000099",
-          borderWidth: 5,
-          pointRadius: 5,
-          pointHoverRadius: 10,
-          pointBackgroundColor: "rgba(255, 255, 255, 1)",
-          pointBorderColor: "#0000FF",
-        },
-        options: {
-          scales: {
-            x: {
-              grid: {
-                color: "#000", 
-                lineWidth: 20, 
-              },
-            },
-            y: {
-              grid: {
-                color: "#000", 
-                lineWidth: 20, 
-              },
-            },
+    <canvas id="myChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      var labels = <%= raw(@labels.to_json) %>;
+      var values = <%= raw(@values.to_json) %>;
+      var ctx = document.getElementById('myChart');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: 'モチベーション',
+                  data: values,
+                  backgroundColor: 'rgba(75,192,192,0.2)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  borderWidth: 3,
+                  pointRadius: 5,
+                  pointHoverRadius:10
+              }]
           },
+          options: {
+            tooltips: {
+                callbacks: {
+                    title: function(tooltipItem, data) {
+                        return '年齢: ' + data.labels[tooltipItem[0].index];
+                    },
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        var comment = dataWithLinks[tooltipItem.index].comment; 
+                        return '数値: ' + value + ', コメント: ' + (comment || 'コメントなし');
+                    }
+                }
+            }
         }
-      %>
-    </div> 
+      });
+    </script>
   </div>
 </div>
 
@@ -47,16 +49,27 @@
 
 <script>
 document.addEventListener("turbo:load", function() {
-  const chartElement = document.getElementById('chart-1');
+  const chartElement = document.getElementById('myChart');
   const dataWithLinks = <%= raw(@data_with_links.to_json) %>;
   chartElement.onclick = function(event) {
-    const chart = Chart.getChart(event.target);
+    const chart = myChart
     const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
     if (points.length) {
       const index = points[0].index; // クリックされた点のインデックスを取得
       const id = dataWithLinks[index].id; // idを取得
+      const comment = dataWithLinks[index].comment;
       const link = `/graphs/${id}/edit`; // リンクを作成
-      window.location.href = link; // リダイレクト
+
+      const commentContainer = document.getElementById('comment-container');
+      if (comment) {
+        commentContainer.innerHTML = `<p>コメント: ${comment}</p>`;
+      } else {
+        commentContainer.innerHTML = `<p>コメントはありません。</p>`;
+      }
+
+      setTimeout(function() {
+        window.location.href = link; // 編集ページにリダイレクト
+      }, 100); // 100ミリ秒後に遷移
     }
   };
 });
