@@ -25,7 +25,7 @@
         <label class="form-label">画像</label>
         <%= f.file_field :image%>
       </div>
-      <%= f.submit '保存する', class:"btn btn-primary" %>
+      <%= f.submit '保存する', class:"btn btn-primary" %><br>
       <%= link_to '戻る', events_by_age_path(@age), class:"btn btn-secondary" %>
       <% end %>
     </div>

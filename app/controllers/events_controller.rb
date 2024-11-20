@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.user = current_user
+    @event.user_id = current_user.id
     if @event.save
       redirect_to events_by_age_path(@event.age)
     else
@@ -28,7 +28,7 @@ class EventsController < ApplicationController
 
   def by_age
     @age = params[:age].to_i
-    @events = current_user.events.where(age: @age).order(created_at: :desc)
+    @events = current_user.events.where(age: @age).order(month: :asc)
     puts @events.inspect
   end
 
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
   def update
     @event = current_user.events.find(params[:id])
     if @event.update(event_params)
-      redirect_to events_by_age_path(event.age)
+      redirect_to events_by_age_path(@event.age)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    params.require(:event).permit(:age, :month, :event, :event_detail, :image)
+    params.require(:event).permit(:user_id, :age, :month, :event, :event_detail, :image)
   end
 
 end
