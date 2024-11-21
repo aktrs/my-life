@@ -4,7 +4,9 @@ class Graph < ApplicationRecord
     end
 
     belongs_to :user
+    has_one_attached :image
 
     validates :age, presence: true, length: { maximum: 2 }
     validates :value, presence: true, length: { maximum: 4 }
 end
+

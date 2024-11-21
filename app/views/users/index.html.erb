@@ -13,8 +13,12 @@
           <div class="user-graphs">
             <% user.graphs.each do |graph| %>
                 <div class="graph-item">
-                  <%= image_tag graph.image_url, size: "100x100" %>
-                  <p class="caption"><%= graph.name %></p>
+                  <% if graph.image.attached? %>
+                    <%= image_tag url_for(graph.image), size: "100x100" %>
+                  <% else %>
+                    <p>No image available</p>
+                  <% end %>
+
                 </div>
             <% end %>
           </div>
