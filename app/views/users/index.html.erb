@@ -14,11 +14,12 @@
             <% user.graphs.each do |graph| %>
                 <div class="graph-item">
                   <% if graph.image.attached? %>
-                    <%= image_tag url_for(graph.image), size: "100x100" %>
+                  <% image_tag graph.image.variant(resize: "100x100").processed, size:"100x100", alt:"Graph Image" %>
                   <% else %>
-                    <p>No image available</p>
+                    <p>No graph image available</p>
                   <% end %>
-
+                    <p><%= graph.age %>years old</p>
+                    <p><%= graph.comment %></p>
                 </div>
             <% end %>
           </div>

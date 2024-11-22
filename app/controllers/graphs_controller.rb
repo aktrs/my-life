@@ -55,7 +55,7 @@ class GraphsController < ApplicationController
   private
 
   def graph_params
-    params.require(:graph).permit(:user_id, :age, :value, :comment)
+    params.require(:graph).permit(:user_id, :age, :value, :comment, :image)
   end
 
 end

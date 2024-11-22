@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    @users = User.includes(:graphs).all
     @users = User.page(params[:page]).per(5).reverse_order
     @users.each do |user|
       user.graphs = Graph.where(user_id: user.id)
