@@ -7,7 +7,7 @@
       <%= @users.each do |user| %>
       <div class="one-post card mt-3">
         <%= link_to user_path(user) do %>
-        <p class="caption h4"><%= user.name %></p>
+          <p class="caption h4"><%= user.name %></p>
         <% end %>
         <% if user.graphs.any? %>
           <div class="user-graphs">
@@ -29,6 +29,5 @@
       </div>
       <% end %>
     </div>
-    <%= paginate @users %>
   </div>
 </div>

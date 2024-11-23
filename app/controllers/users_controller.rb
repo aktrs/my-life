@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
   def index
-    @users = User.includes(:graphs).all
-    @users = User.page(params[:page]).per(5).reverse_order
-    @users.each do |user|
-      user.graphs = Graph.where(user_id: user.id)
+    @users = User.all
+
+    @graphs_data = @users.map do |user|
+      {
+        user_id: user.id,
+        name: user.name,
+        graphs: user.graphs.map{ |graph| { age: graph.age, value: graph.value } }
+      }
     end
   end
 
