@@ -9,25 +9,44 @@
         <%= link_to user_path(user) do %>
           <p class="caption h4"><%= user.name %></p>
         <% end %>
-        <% if user.graphs.any? %>
-          <div class="user-graphs">
-            <% user.graphs.each do |graph| %>
-                <div class="graph-item">
-                  <% if graph.image.attached? %>
-                  <% image_tag graph.image.variant(resize: "100x100").processed, size:"100x100", alt:"Graph Image" %>
-                  <% else %>
-                    <p>No graph image available</p>
-                  <% end %>
-                    <p><%= graph.age %>years old</p>
-                    <p><%= graph.comment %></p>
-                </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p class="no-graphs">グラフがありません</p>
-        <% end %>
+
+        <canvas id="chart-<%= user.id %>" width="400" height="200"></canvas>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <script>
+            // Chart.jsの設定
+            var ctx = document.getElementById('chart-<%= user.id %>').getContext('2d');
+            var myChart = new Chart(ctx, {
+              type: 'line',  // 折れ線グラフ
+              data: {
+                labels: <%= raw(user.graphs.map(&:age).to_json) %>,  // 年齢をx軸のラベルとして
+                datasets: [{
+                  label: 'モチベーション',
+                  data: <%= raw(user.graphs.map(&:value).to_json) %>,  // 値をy軸のデータとして
+                  backgroundColor: 'rgba(75,192,192,0.2)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  borderWidth: 3,
+                  pointRadius: 5,
+                  pointHoverRadius: 10
+                }]
+              },
+              options: {
+                tooltips: {
+                  callbacks: {
+                    title: function(tooltipItem, data) {
+                      return '年齢: ' + data.labels[tooltipItem[0].index];
+                    },
+                    label: function(tooltipItem, data) {
+                      var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                      return '数値: ' + value;
+                    }
+                  }
+                }
+              }
+            });
+          </script>
+        </div>
       </div>
-      <% end %>
-    </div>
+    <% end %>
   </div>
 </div>
