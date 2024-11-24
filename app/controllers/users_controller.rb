@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       {
         user_id: user.id,
         name: user.name,
-        graphs: user.graphs.map{ |graph| { age: graph.age, value: graph.value } }
+        graphs: user.graphs.order(:age).map{ |graph| { age: graph.age, value: graph.value } }
       }
     end
   end
