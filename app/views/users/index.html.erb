@@ -5,7 +5,7 @@
     </div>
     <div class="col-12 col-md-4 mb-3">
       <%= @users.each do |user| %>
-      <div class="one-post card mt-3">
+      <div class="one-post mt-3">
         <%= link_to user_path(user) do %>
           <p class="caption h4"><%= user.name %></p>
         <% end %>
@@ -19,10 +19,11 @@
             var myChart = new Chart(ctx, {
               type: 'line',  // 折れ線グラフ
               data: {
-                labels: <%= raw(user.graphs.map(&:age).to_json) %>,  // 年齢をx軸のラベルとして
-                datasets: [{
+                  labels: <%= user.graphs.map(&:age).to_json %>,  // 年齢をx軸のラベルとして
+                  datasets: [{
                   label: 'モチベーション',
-                  data: <%= raw(user.graphs.map(&:value).to_json) %>,  // 値をy軸のデータとして
+                  data: <%= user.graphs.map(&:value).to_json %>,  // 値をy軸のデータとして
+
                   backgroundColor: 'rgba(75,192,192,0.2)',
                   borderColor: 'rgba(75,192,192,1)',
                   borderWidth: 3,
@@ -41,7 +42,7 @@
                       return '数値: ' + value;
                     }
                   }
-                }
+                }  
               }
             });
           </script>
