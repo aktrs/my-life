@@ -1,16 +1,16 @@
 <div class="cover-user-index">
-  <div class="container d-flex flex-column align-items-center">
+  <div class="container d-flex flex-wrap justify-content-center">
     <div class="row mt-5">
       <h1 class="font-weight-normal">ユーザ一覧</h1>
     </div>
-    <div class="col-12 col-md-4 mb-3">
-      <%= @users.each do |user| %>
-      <div class="one-post mt-3">
-        <%= link_to user_path(user) do %>
-          <p class="caption h4"><%= user.name %></p>
-        <% end %>
+    <%= @users.each do |user| %>
+      <div class="col-12 col-md-2 mb-3">
+        <div class="one-post mt-3">
+          <%= link_to user_path(user) do %>
+            <p class="caption h4"><%= user.name %></p>
+          <% end %>
 
-        <canvas id="chart-<%= user.id %>" width="400" height="200"></canvas>
+        <canvas id="chart-<%= user.id %>" width="300" height="150"></canvas>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
           <script>
