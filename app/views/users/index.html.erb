@@ -1,53 +1,18 @@
 <div class="cover-user-index">
-  <div class="container d-flex flex-column">
-    <div class="row mt-5 index-left">
+  <div class="container d-flex flex-column align^items-center">
+    <div class="row mt-5">
       <h1 class="font-weight-normal text-center">ユーザー一覧</h1>
     </div>
-    <% @users.each do |user| %>
-      <div class="col-12 col-sm-6 col-mb-4">
-        <div class="one-post mt-3">
-          <%= link_to user_path(user) do %>
-            <p class="caption h4"><%= user.name %></p>
-          <% end %>
-
-        <canvas id="chart-<%= user.id %>" width="50" height="25"></canvas>
-
-          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-          <script>
-            // Chart.jsの設定
-            var ctx = document.getElementById('chart-<%= user.id %>').getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'line',  // 折れ線グラフ
-              data: {
-                  labels: <%= user.graphs.map(&:age).to_json %>, // 年齢をx軸のラベルとして
-                  datasets: [{
-                  label: 'モチベーション',
-                  data: <%= user.graphs.map(&:value).to_json %>, // 値をy軸のデータとして
-                  backgroundColor: 'rgba(75,192,192,0.2)',
-                  borderColor: 'rgba(75,192,192,1)',
-                  borderWidth: 3,
-                  pointRadius: 5,
-                  pointHoverRadius: 10
-                }]
-              },
-              options: {
-                tooltips: {
-                  callbacks: {
-                    title: function(tooltipItem, data) {
-                      return '年齢: ' + data.labels[tooltipItem[0].index];
-                    },
-                    label: function(tooltipItem, data) {
-                      var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                      return '数値: ' + value;
-                    }
-                  }
-                }  
-              }
-            });
-          </script>
-        </div>
+    <div class="row mt-5 w-50">
+      <% @users.each do |user| %>
+      <div class="one-post card mt-3">
+        <%= link_to user_path(user) do %>
+        <p class="caption h4"><%= user.name %></p>
+        <% end %>
       </div>
-    <% end %>
+      <% end %>
+    </div>
+    <%= paginate @users %>
   </div>
 </div>
+    

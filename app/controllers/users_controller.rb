@@ -1,19 +1,17 @@
 class UsersController < ApplicationController
   def index
-    @users = User.where.not(id: current_user.id)
-
-    @graphs_data = @users.map do |user|
-      graphs = user.graphs.order(:age)
-      {
-        user_id: user.id,
-        name: user.name,
-        graphs: graphs.map { |graph| { age: graph.age, value: graph.value } }
-      }
-    end
+    @users = User.page(params[:page]).per(5).reverse_order
   end
 
   def show
     @user = User.find(params[:id])
-    @events = @user.events.page(params[:page]).per(8).reverse_order
+    @labels = @user.graphs.map(&:age)  # 年齢
+    @values = @user.graphs.map(&:value)  # 値
+    @data_with_links = @user.graphs.map do |graph|
+      {
+        id: graph.id,
+        comment: graph.comment  # コメント
+      }
+    end
   end
 end
