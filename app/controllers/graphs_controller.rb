@@ -1,5 +1,7 @@
 class GraphsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def new
     @graph = Graph.new
   end
@@ -53,6 +55,13 @@ class GraphsController < ApplicationController
 
   def graph_params
     params.require(:graph).permit(:user_id, :age, :value, :comment, :image)
+  end
+
+  def correct_user
+    @graph = Graph.find(params[:id])
+    if @graph.user != current_user
+      redirect_to graphs_path, alert: "他人のグラフを編集することはできません。"
+    end
   end
 
 end
