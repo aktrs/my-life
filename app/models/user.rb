@@ -6,4 +6,6 @@ class User < ApplicationRecord
   
   has_many :graphs, dependent: :destroy
   has_many :events, dependent: :destroy
+
+  attachment :profile_image
 end

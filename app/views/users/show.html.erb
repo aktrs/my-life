@@ -7,6 +7,16 @@
       <h1 class="font-weight-normal"><%= @user.name %>さんのページ</h1>
       <% end %>
     </div>
+    <% if user_signed_in? && @user == current_user %>
+    <p class="d-flex align-self-end">
+      <%= link_to "グラフの追加", graphs_new_path, class:"btn btn-warning" %> 
+      <%= link_to "プロフィール編集", edit_user_path(@user),class: "btn btn-success" %>
+    </p>
+    <% end %>
+    <div class="d-flex w-100">
+      <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.svg", class: "mb-3 profile-img" %>
+      <h4 class="ml-3 mb-3 card w-100 profile"><%= @user.profile %></h4>
+    </div>
     
     <canvas id="myChart"></canvas>
 
@@ -15,6 +25,7 @@
       var labels = <%= raw(@labels.to_json) %>;
       var values = <%= raw(@values.to_json) %>;
       var dataWithLinks = <%= raw(@data_with_links.to_json) %>;
+      var isCurrentUserPage = <%= user_signed_in? && @user == current_user %>;
       var ctx = document.getElementById('myChart');
       var myChart = new Chart(ctx, {
           type: 'line',
@@ -60,6 +71,7 @@ document.addEventListener("turbo:load", function() {
   const chartElement = document.getElementById('myChart');
   const dataWithLinks = <%= raw(@data_with_links.to_json) %>;
   chartElement.onclick = function(event) {
+    if (!isCurrentUserPage) return;
     const chart = myChart
     const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
     if (points.length) {
@@ -75,9 +87,9 @@ document.addEventListener("turbo:load", function() {
         commentContainer.innerHTML = `<p>コメントはありません。</p>`;
       }
 
-      setTimeout(function() {
-        window.location.href = link; // 編集ページにリダイレクト
-      }, 100); // 100ミリ秒後に遷移
+       setTimeout(function() {
+          window.location.href = link; // 編集ページにリダイレクト
+        }, 100); // 100ミリ秒後に遷移
     }
   };
 });
