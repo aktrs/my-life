@@ -16,7 +16,8 @@
       <div>
         <%= link_to image_tag("logo.png", alt:"My Life", style:"width:130px; height:auto;"),root_path, class: "text-white nav-link" %>
       </div>
-      <div><%= link_to "トップ", events_path, class:"text-white nav-link" %></div>
+      <div><%= link_to "トップ", root_path, class:"text-white nav-link" %></div>
+      <div><%= link_to "出来事一覧", events_path, class:"text-white nav-link" %></div>
       <div><%= link_to "出来事追加", new_event_path, class:"text-white nav-link" %></div>
       <div><%= link_to "ユーザ一覧", users_path, class:"text-white nav-link" %></div>
       <div><%= link_to "マイページ", user_path(current_user.id), class:"text-white nav-link" %></div>

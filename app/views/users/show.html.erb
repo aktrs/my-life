@@ -9,7 +9,7 @@
     </div>
     <% if user_signed_in? && @user == current_user %>
     <p class="d-flex align-self-end">
-      <%= link_to "グラフの追加", graphs_new_path, class:"btn btn-warning" %> 
+      <%= link_to "グラフの追加", graphs_new_path, class:"btn btn-warning space-between-buttons" %> 
       <%= link_to "プロフィール編集", edit_user_path(@user),class: "btn btn-success" %>
     </p>
     <% end %>
@@ -19,6 +19,12 @@
     </div>
     
     <canvas id="myChart"></canvas>
+
+    <% unless user_signed_in? && @user == current_user %>
+      <div class="mt-4">
+        <%= link_to '戻る', users_path, class: "btn btn-secondary" %>
+      </div>
+    <% end %>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -94,3 +100,5 @@ document.addEventListener("turbo:load", function() {
   };
 });
 </script>
+
+ 

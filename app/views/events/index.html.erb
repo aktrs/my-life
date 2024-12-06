@@ -2,6 +2,9 @@
   <div class="container d-flex flex-column">
     <div class="row mt-5 index-left">
       <% @events_by_age.each_with_index do |(age, events), index| %>
+        <div class="border border-primary explanatory">
+          <h2>追加した出来事が年齢ごとにこのページに表示されます。年齢部分をクリックすると、詳細を見ることができます。</h2>
+        </div>
         <% if events.present? %>
           <div class="col-12 col-md-4 mb-3">
             <div class="border border-primary index-border">
