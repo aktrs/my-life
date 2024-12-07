@@ -20,9 +20,9 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events_by_age = current_user.events.order(age: :desc, created_at: :desc).group_by(&:age)
+    @events_by_age = current_user.events.order(age: :desc).group_by(&:age)
     @events_by_age.each do |age, events|
-    first_event_image = events.first.image if events.present?
+    @events = current_user.events.page(params[:page]).per(6).reverse_order
     end
   end
 

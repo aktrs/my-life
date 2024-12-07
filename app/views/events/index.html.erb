@@ -2,22 +2,16 @@
   <div class="container d-flex flex-column">
     <div class="row mt-5 index-left">
       <% @events_by_age.each_with_index do |(age, events), index| %>
-        <div class="border border-primary explanatory">
-          <h2>追加した出来事が年齢ごとにこのページに表示されます。年齢部分をクリックすると、詳細を見ることができます。</h2>
-        </div>
         <% if events.present? %>
           <div class="col-12 col-md-4 mb-3">
             <div class="border border-primary index-border">
               <% if age.present? %>
-                <h2><%= link_to "#{age} years old", events_by_age_path(age), class:"age"%></h2>
+                <h2><%= link_to "#{age}歳", events_by_age_path(age), class:"age"%></h2>
               <% end %>
               <ul>
                 <% events.each do |event| %>
                   <li>
                     <p class="event-text"><%= event.event %></p>
-                    <div class="image-container">
-                      <%= attachment_image_tag event, :image, format:'jpeg',size:'200x150', class:'round-image'%>
-                    </div>
                   </li>
                 <% end %>
               </ul>
@@ -26,6 +20,7 @@
         <% end %>
       <% end %>
     </div>
+    <%= paginate @events %>
   </div>
 </div>
 
