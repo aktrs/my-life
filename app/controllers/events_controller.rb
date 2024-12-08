@@ -20,9 +20,9 @@ class EventsController < ApplicationController
   end
 
   def index
+    @events = current_user.events.page(params[:page]).per(6).reverse_order
     @events_by_age = current_user.events.order(age: :desc).group_by(&:age)
     @events_by_age.each do |age, events|
-    @events = current_user.events.page(params[:page]).per(6).reverse_order
     end
   end
 

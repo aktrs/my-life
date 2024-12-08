@@ -9,7 +9,7 @@ class GraphsController < ApplicationController
   def create
     @graph = current_user.graphs.new(graph_params) 
     if @graph.save
-      redirect_to graphs_path, notice: 'グラフが追加されました。'
+      redirect_to user_path(current_user), notice: 'グラフが追加されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,13 +42,13 @@ class GraphsController < ApplicationController
   def update
     graph = Graph.find(params[:id])
     graph.update(graph_params)
-    redirect_to graphs_path
+    redirect_to user_path(current_user)
   end
 
   def destroy
     graph = Graph.find(params[:id])
     graph.destroy
-    redirect_to graphs_path
+    redirect_to user_path(current_user)
   end
 
   private

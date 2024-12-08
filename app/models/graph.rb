@@ -8,6 +8,5 @@ class Graph < ApplicationRecord
 
     validates :age, presence: true, length: { maximum: 2 }
     validates :value, presence: true, length: { maximum: 4 }
-    validates :image, presence: true
 end
 
