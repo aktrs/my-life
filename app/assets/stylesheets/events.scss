@@ -15,6 +15,10 @@
 }
 
 .index-border{
+    height:300px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
     font-size:30px;
     border-radius:50px;
     border-spacing:10px 10px;
@@ -84,7 +88,6 @@ ul{
 }
 
 .cover-by-age{
-    color:#0000ff;
     min-height:100vh;
     width: 100%;
     background-image: url(/assets/by_age_image.jpg);
@@ -96,6 +99,7 @@ ul{
 .cover-by-age h1{
     font-size:50px;
     font-family:cursive;
+    color:#0000ff;
 }
 
 .event-month{
@@ -109,7 +113,15 @@ ul{
     color:#CCFFFF
 }
 
+.cover-by-age p{
+    font-size:20px;
+}
+
 .by-age-border{
+    height:400px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
     font-size:30px;
     border-radius:50px;
     border-spacing:10px 10px;
