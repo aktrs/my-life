@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = current_user.events.find(params[:id])
-    @age = @event.age
+    @age = @event.age || 0
   end
 
   def update

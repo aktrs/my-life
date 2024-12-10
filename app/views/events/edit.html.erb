@@ -3,6 +3,14 @@
     <div class="row">
       <h1 class="title mt-5 mb-5">編集画面</h1>
     </div>
+    <% if @event.errors.any? %>
+    <div class="card text-center text-white bg-danger mt-3">
+      <%= @event.errors.count %>件のエラーが発生しました
+      <% @event.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+      </div>
+    <% end %>
     <div class="row">
       <%= form_with model:@event, local:true do |f| %>
       <div class="form-group mb-3">
@@ -26,7 +34,7 @@
         <%= f.file_field :image%>
       </div>
       <%= f.submit '保存する', class:"btn btn-primary" %><br>
-      <%= link_to '戻る', events_by_age_path(@age), class:"btn btn-secondary" %>
+      <%= link_to '戻る', events_by_age_path(@age || 0), class:"btn btn-secondary" %>
       <% end %>
     </div>
   </div>
