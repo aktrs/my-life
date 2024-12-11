@@ -5,9 +5,7 @@
         <% if events.present? %>
           <div class="col-12 col-md-4 mb-3">
             <div class="border border-primary index-border">
-              <% if age.present? %>
                 <h2><%= link_to "#{age}歳", events_by_age_path(age), class:"age"%></h2>
-              <% end %>
               <ul>
                 <% events.each do |event| %>
                   <li>
