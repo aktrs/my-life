@@ -102,9 +102,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_073322) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
     t.string "profile"
     t.string "profile_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -118,7 +118,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_073322) do
   add_foreign_key "events", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "relationships", "followers"
   add_foreign_key "relationships", "users", column: "followed_id"
+  add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "rooms", "users"
 end

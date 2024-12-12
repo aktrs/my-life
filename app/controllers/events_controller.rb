@@ -20,11 +20,21 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = current_user.events.page(params[:page]).per(6).reverse_order
-    @events_by_age = {}
-    current_user.events.order(age: :desc).pluck(:age).uniq.each do |age|
-      @events_by_age[age] = current_user.events.where(age: age).page(params["page_#{age}"]).per(6).reverse_order
+    unique_ages = current_user.events.order(age: :desc).pluck(:age).uniq
+  if unique_ages.size > 6
+    # ユニークな age をページネート
+    @paginated_ages = Kaminari.paginate_array(unique_ages).page(params[:page]).per(6)
+    # ページに表示するイベントだけを取得
+    @events_by_age = @paginated_ages.index_with do |age|
+      current_user.events.where(age: age).order(created_at: :desc)
     end
+  else
+    # ページネーションなしですべての年齢を表示
+    @paginated_ages = unique_ages
+    @events_by_age = unique_ages.index_with do |age|
+      current_user.events.where(age: age).order(created_at: :desc)
+    end
+  end
   end
 
   def by_age
