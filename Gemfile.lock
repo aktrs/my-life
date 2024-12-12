@@ -430,7 +430,7 @@ DEPENDENCIES
   chartkick
   debug
   devise
-  error_highlight (>= 0.6.0)
+  error_highlight (>= 0.7.0)
   ffi
   gon
   groupdate
