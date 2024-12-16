@@ -35,23 +35,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const ageField = document.getElementById('age_field');
-    const monthField = document.getElementById('month_field');
-
-    if (ageField && monthField){
-    function convertToHalfWidth(event) {
-      let value = event.target.value;
-      value = value.replace(/[０-９]/g, function(match) {
-        return String.fromCharCode(match.charCodeAt(0) - 0xFEE0);
-      });
-      event.target.value = value;
-    }
-
-    ageField.addEventListener('input', convertToHalfWidth);
-    monthField.addEventListener('input', convertToHalfWidth);
-   }
-  });
-</script>
