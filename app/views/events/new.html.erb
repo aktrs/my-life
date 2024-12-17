@@ -3,9 +3,7 @@
     <% if @event.errors.any? %>
       <div class="card text-center text-white bg-danger mt-3">
         <%= @event.errors.count %>件のエラーが発生しました
-        <%= @event.errors.full_messages.each do |message| %>
-          <p><%= message %></p>
-        <% end %>
+        <%= safe_join(@event.errors.full_messages.map { |message| content_tag(:p, message) }) %>
       </div>
     <% end %>
     <div class="row mt-5">
