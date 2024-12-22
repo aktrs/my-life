@@ -1,0 +1,42 @@
+<div class="cover-room">
+  <div class="container d-flex flex-column align-items-center">
+    <div class="row mt-5">
+      <% @entries.each do |e| %>
+        <% if @myUserId != e.user.id %>
+          <h2 class="font-weight-normal"><%= e.user.name %>さんとのトークルーム</h2>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="mb-3 d-flex justify-content-center w-100">
+      <%= link_to '戻る', user_path, class: "btn btn-secondary " %>
+    </div>
+
+        <div class="ml-3 mb-3 card w-100">
+          <% if @messages.present? %>
+            <% @messages.each do |m| %>
+              <% if @myUserId == m.user.id %>
+                <div class="d-flex justify-content-end mt-3">
+                  <p class="bg-success-subtle p-2 m-3 rounded d-inline-block" ><%= m.message %></p>
+                </div>
+              <% else %>
+                <div class="d-flex justify-content-start mt-3">
+                  <p class="bg-danger-subtle p-2 m-3 rounded d-inline-block"><%= m.message %></p>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="chat-input-container">
+          <%= form_for @message, html: {class:"d-flex align-items-center w-100"} do |f| %>
+            <div class="d-flex">
+            <%= f.text_field:message, placeholder:"メッセージを入力してください", size:50, class:"form-text-field message-input" %>
+            <%= f.hidden_field:room_id, value:@room.id %>
+              <%= f.submit "送信する", class:"form-submit ml-2" %>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.cover-room{
+    height:100%;
+    width:100%;
+    background-image: url(/assets/room_image.jpg);
+    background-color: rgba(255,255,255,0.4);
+    background-blend-mode:lighten;
+    background-size:100% 100%;
+    position:relative;
+}
+
+h2{
+    text-align:center;
+}
+
+.message-input{
+    margin-right:10px;
+}
+
+.chat-input-container{
+    position:fixed;
+    bottom:0;
+    display:flex;
+    margin:10px auto;
+    justify-content:center;
+}
+
+.chat-input-container form{
+    width:100%;
+    max-width:1200px;
+}
+
