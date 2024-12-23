@@ -1,6 +1,7 @@
 <div class="cover-index">
   <div class="container d-flex flex-column">
     <div class="row mt-5 index-left">
+    <%= paginate @paginated_ages %>
       <% @events_by_age.each do |age, events| %>
         <% if events.present? %>
           <div class="col-12 col-md-4 mb-3">
@@ -18,7 +19,6 @@
         <% end %>
       <% end %>
     </div>
-    <%= paginate @paginated_ages %>
   </div>
 </div>
 

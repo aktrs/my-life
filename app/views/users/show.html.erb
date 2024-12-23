@@ -53,12 +53,6 @@
     
     <canvas id="myChart"></canvas>
 
-    <% unless user_signed_in? && @user == current_user %>
-      <div class="mt-4">
-        <%= link_to '戻る', users_path, class: "btn btn-secondary" %>
-      </div>
-    <% end %>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       var labels = <%= raw(@labels.to_json) %>;
