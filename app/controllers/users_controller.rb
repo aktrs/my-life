@@ -30,11 +30,11 @@ class UsersController < ApplicationController
        end
        break if @isRoom
       end
-    end
 
-    unless @isRoom
-     @room = Room.new
-     @entry = Entry.new
+      unless @isRoom
+      @room = Room.new
+      @entry = Entry.new
+      end
     end
   end
 
