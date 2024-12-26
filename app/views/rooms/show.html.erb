@@ -4,12 +4,13 @@
       <% @entries.each do |e| %>
         <% if @myUserId != e.user.id %>
           <h2 class="font-weight-normal"><%= e.user.name %>さんとのトークルーム</h2>
+          <% @user = e.user %>
         <% end %>
       <% end %>
     </div>
 
     <div class="mb-3 d-flex justify-content-center w-100">
-      <%= link_to '戻る', user_path, class: "btn btn-secondary " %>
+      <%= link_to '戻る', user_path(@user), class: "btn btn-secondary " %>
     </div>
 
         <div class="ml-3 mb-3 card w-100">
