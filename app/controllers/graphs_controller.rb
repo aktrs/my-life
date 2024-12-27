@@ -40,9 +40,12 @@ class GraphsController < ApplicationController
   end
 
   def update
-    graph = Graph.find(params[:id])
-    graph.update(graph_params)
-    redirect_to user_path(current_user)
+    @graph = Graph.find(params[:id])
+    if @graph.update(graph_params)
+      redirect_to user_path(current_user)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
