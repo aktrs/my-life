@@ -170,3 +170,26 @@ ul{
   font-weight: bold;
 }
 
+@media screen and (max-width: 575px){
+    .form-label{
+        font-size:20px;
+    }
+    
+    .form-group{
+        width:300px;
+    }
+    
+    .cover-new .form-control{
+        border-radius:10px;
+        border:2px solid #999999
+    } 
+
+   .form-group textarea#event_detail{
+    height:150px;
+   }
+
+   .cover-edit h1{
+    font-size:40px;
+   }
+}
+

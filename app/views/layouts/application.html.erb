@@ -12,18 +12,37 @@
 
   <body>
     <% if user_signed_in? %>
-    <header>
-      <div>
-        <%= link_to image_tag("logo.png", alt:"My Life", style:"width:130px; height:auto;"),root_path, class: "text-white nav-link" %>
-      </div>
-      <div><%= link_to "使い方", homes_path, class:"text-white nav-link" %></div>
-      <div><%= link_to "出来事一覧", events_path, class:"text-white nav-link" %></div>
-      <div><%= link_to "出来事追加", new_event_path, class:"text-white nav-link" %></div>
-       <div><%= link_to "マイページ", user_path(current_user.id), class:"text-white nav-link" %></div>
-      <div><%= link_to "ユーザー", users_path, class:"text-white nav-link" %></div>
-      <div><%= link_to "ログアウト", destroy_user_session_path, data:{ turbo_method: :delete }, class: "text-white nav-link" %></div>
+    <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
+      <%= link_to image_tag("logo.png", alt:"My Life", style:"width:130px; height:auto;"),root_path, class: "text-white nav-link" %>
+      <input type="checkbox" name="hamburger" id="hamburger" class="c-hamburger-menu__input"/><!-- 追記 idはlabelのforと同じにする -->
+      <label for="hamburger" class="c-hamburger-menu__bg"></label><!-- 追記 ハンバーガーメニュを開いた時の背景 -->
+      <ul class="c-header__list c-hamburger-menu__list"><!-- 追記 クラスを追記 -->
+        <li class="c-header__list-item">
+          <%= link_to "使い方", homes_path, class:"text-white nav-link" %>
+        </li>
+        <li class="c-header__list-item">
+          <%= link_to "出来事一覧", events_path, class:"text-white nav-link" %>
+        </li>
+        <li class="c-header__list-item">
+          <%= link_to "出来事追加", new_event_path, class:"text-white nav-link" %>
+        </li>
+        <li class="c-header__list-item">
+          <%= link_to "マイページ", user_path(current_user.id), class:"text-white nav-link" %>
+        </li>
+        <li class="c-header__list-item">
+          <%= link_to "ユーザー", users_path, class:"text-white nav-link" %>
+        </li>
+        <li class="c-header__list-item">
+          <%= link_to "ログアウト", destroy_user_session_path, data:{ turbo_method: :delete }, class: "text-white nav-link" %>
+        </li>
+      </ul>
+      <label for="hamburger" class="c-hamburger-menu__button"><!-- 追記 ハンバーガーメニューのボタン -->
+        <span class="c-hamburger-menu__button-mark"></span>
+        <span class="c-hamburger-menu__button-mark"></span>
+        <span class="c-hamburger-menu__button-mark"></span>
+      </label>
     </header>
     <% end %>
     <%= yield %>
   </body>
-</html>
+    </html>

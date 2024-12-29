@@ -27,13 +27,14 @@
 
 .profile{
     padding:15px;
+    width:100%;
 }
 
 .profile-img{
     margin-right:10px;
 }
 
-.space-between-buttons{
+.graph-button{
     margin-right:20px;
 }
 
@@ -43,6 +44,21 @@
 
 .cover-user-show .d-flex h6{
     margin-right: 15px;
+}
+
+@media screen and (max-width:575px){
+   .graph-profile-button{
+    justify-content:center;
+   }
+
+   .profile{
+    max-width:60%;
+    margin:0 auto;
+   }
+
+   .profile-img{
+    
+   }
 }
 
 

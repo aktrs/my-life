@@ -2,17 +2,16 @@
   <div class="container d-flex flex-column align-items-center">
     <div class="row mt-5">
       <% if user_signed_in? && @user == current_user %>
-        <h1 class="font-weight-normal">マイページ</h1>
+        <h1 class="fw-bold">マイページ</h1>
       <% else %>
         <h1 class="font-weight-normal"><%= @user.name %>さんのページ</h1>
       <% end %>
     </div>
 
-
     <% if user_signed_in? && @user == current_user %>
-    <div class="d-flex align-self-end mb-0">
-      <%= link_to "グラフの作成", graphs_new_path, class:"btn btn-warning space-between-buttons" %> 
-      <%= link_to "プロフィール編集", edit_user_path(@user),class: "btn btn-success" %>
+    <div class="graph-profile-button d-flex align-self-end mb-0">
+      <%= link_to "グラフの作成", graphs_new_path, class:"btn btn-warning graph-button" %> 
+      <%= link_to "プロフィール編集", edit_user_path(@user),class: "btn btn-success edit-button" %>
     </div>
     <% end %>
 
