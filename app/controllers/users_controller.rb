@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @from_follows = request.referer.present? && request.referer.include?(follows_user_path(current_user))
+    @from_followers = request.referer.present? && request.referer.include?(followers_user_path(current_user))
     @graphs = @user.graphs.order(:age)
     @following_users = @user.following_user
     @follower_users = @user.follower_user

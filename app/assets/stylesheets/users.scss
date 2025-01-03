@@ -46,19 +46,38 @@
     margin-right: 15px;
 }
 
+.space-between-buttons{
+    margin-right:10px;
+}
+
 @media screen and (max-width:575px){
-   .graph-profile-button{
+   .d-flex.align-self-end.mb-0{
     justify-content:center;
+    width:100%;
+    flex-wrap:wrap;
+    gap:10px;
+   }
+
+   .user-profile{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
    }
 
    .profile{
-    max-width:60%;
-    margin:0 auto;
+    padding:15px;
+    width:100%;
+    font-size:16px;
    }
 
-   .profile-img{
-    
+   .d-flex.align-self-end.mb-3{
+    justify-content:center;
+    width:100%;
+    flex-wrap:wrap;
+    gap:10px;
    }
-}
+
+   }
 
 
