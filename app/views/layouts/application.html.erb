@@ -30,7 +30,7 @@
           <%= link_to "マイページ", user_path(current_user.id), class:"text-white nav-link" %>
         </li>
         <li class="c-header__list-item">
-          <%= link_to "ユーザー", users_path, class:"text-white nav-link" %>
+          <%= link_to "ユーザー", users_path(from_users_list: true), class:"text-white nav-link" %>
         </li>
         <li class="c-header__list-item">
           <%= link_to "ログアウト", destroy_user_session_path, data:{ turbo_method: :delete }, class: "text-white nav-link" %>

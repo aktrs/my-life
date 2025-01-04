@@ -50,6 +50,17 @@
     margin-right:10px;
 }
 
+.btn-secondary{
+    margin-right:10px;
+}
+
+.d-flex .btn{
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
 @media screen and (max-width:575px){
    .d-flex.align-self-end.mb-0{
     justify-content:center;
