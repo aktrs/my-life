@@ -53,6 +53,15 @@
    margin-right:20px;
    padding:0;
  }
+
+ .c-header__list-item a {
+  cursor: pointer !important; 
+  display: inline-block;
+}
+
+.c-hamburger-menu__button {
+  cursor: pointer !important; 
+}
  
  .c-header__list-link {
    color: #000; /* カスタマイズしてください */
@@ -79,7 +88,7 @@
   width:100%;
   z-index:10;
  }
- 
+
  @media screen and (max-width: 750px) {
    .c-hamburger-menu__list {
      background-color: #000; /* カスタマイズしてください */
@@ -93,7 +102,6 @@
      transition: 0.3s; /* カスタマイズしてください */
      top: 100%;
      width: 100%;
-     cursor: pointer;
      z-index:10;
    }
  
@@ -101,16 +109,13 @@
      transform: translateX(0%);
      transition: 0.3s;
    }
- }
  
  .c-hamburger-menu__input {
    display: none;
-
  }
  
  .c-hamburger-menu__bg {
    background-color: #000; /* カスタマイズしてください */
-   cursor: pointer;
    display: none;
    height: 100vh;
    left: 0;
@@ -125,27 +130,19 @@
    display: block;
  }
  
- .c-hamburger-menu__button {
-   display: flex;
-   cursor: pointer;
-   flex-direction:column;
- }
- 
- @media screen and (max-width: 750px) {
    .c-hamburger-menu__button {
      align-items: center;
      appearance: none;
      background-color: transparent;
      border: none;
-     cursor: pointer;
      display: flex;
      flex-direction: column;
      gap: 5px; /* カスタマイズしてください */
      height: 32px; /* カスタマイズしてください */
      justify-content: center;
      width: 32px; /* カスタマイズしてください */
+     cursor:pointer !important;
    }
- }
  
  .c-hamburger-menu__button-mark {
    background-color: #FFF; /* カスタマイズしてください */
@@ -153,11 +150,9 @@
    height: 1px; /* カスタマイズしてください */
    transition: 0.3s; /* カスタマイズしてください */
    width: 20px; /* カスタマイズしてください */
-   cursor:pointer;
    opacity:1;
  }
- 
- @media screen and (max-width: 750px) {
+
    #hamburger:checked
      ~ .c-hamburger-menu__button
      .c-hamburger-menu__button-mark:nth-of-type(1) {
@@ -176,3 +171,13 @@
      transform-origin: 0%; /* カスタマイズしてください */
    }
  }
+
+ @media screen and (min-width: 751px) {
+  .c-hamburger-menu__input {
+    display: none;
+  }
+
+  .c-hamburger-menu__button {
+    display: none;
+  }
+}
