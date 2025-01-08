@@ -17,11 +17,11 @@
           <% if @messages.present? %>
             <% @messages.each do |m| %>
               <% if @myUserId == m.user.id %>
-                <div class="d-flex justify-content-end mt-3">
+                <div class="d-flex justify-content-end">
                   <p class="bg-success-subtle p-2 m-3 rounded d-inline-block" ><%= m.message %></p>
                 </div>
               <% else %>
-                <div class="d-flex justify-content-start mt-3">
+                <div class="d-flex justify-content-start">
                   <p class="bg-danger-subtle p-2 m-3 rounded d-inline-block"><%= m.message %></p>
                 </div>
               <% end %>
@@ -31,7 +31,7 @@
 
         <div class="chat-input-container">
           <%= form_for @message, html: {class:"d-flex align-items-center w-100"} do |f| %>
-            <div class="d-flex">
+            <div class="w-100 mb-2">
             <%= f.text_field:message, placeholder:"メッセージを入力してください", size:50, class:"form-text-field message-input" %>
             <%= f.hidden_field:room_id, value:@room.id %>
               <%= f.submit "送信する", class:"form-submit ml-2" %>

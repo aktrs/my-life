@@ -22,10 +22,34 @@ h2{
     display:flex;
     margin:10px auto;
     justify-content:center;
+    align-items:center;
+    max-width:100%;
 }
 
 .chat-input-container form{
+    display: flex;
+    flex-direction: column;  // 入力フィールドとボタンを縦並びに
+    align-items: center;  // 横方向で中央揃え
+    justify-content: center;  // 縦方向で中央揃え
     width:100%;
-    max-width:1200px;
 }
 
+@media (max-width: 575px) {
+    .chat-input-container {
+        padding: 0 10px; // スマホ向けにパディングを調整
+        flex-direction: column;  // 入力フィールドとボタンを縦並びに
+        align-items: center; // ボタンと入力フィールドを中央揃え
+        justify-content:center;
+    }
+
+    .chat-input-container form input[type="text"] {
+        width: 100%;  // スマホ画面では入力フィールドを幅いっぱいに調整
+    }
+
+    .chat-input-container form .form-submit {
+        margin-top: 10px; // ボタンに少しスペースを追加
+        width:auto;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
