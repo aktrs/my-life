@@ -21,8 +21,6 @@ h2{
     bottom:0;
     display:flex;
     margin:10px auto;
-    justify-content:center;
-    align-items:center;
     max-width:100%;
 }
 
@@ -38,8 +36,8 @@ h2{
     .chat-input-container {
         padding: 0 10px; // スマホ向けにパディングを調整
         flex-direction: column;  // 入力フィールドとボタンを縦並びに
-        align-items: center; // ボタンと入力フィールドを中央揃え
-        justify-content:center;
+        align-items: center !important; // ボタンと入力フィールドを中央揃え
+        justify-content:center !important;
     }
 
     .chat-input-container form input[type="text"] {
@@ -51,5 +49,7 @@ h2{
         width:auto;
         margin-left:auto;
         margin-right:auto;
+        display:block;
+        text-align:center;
     }
 }

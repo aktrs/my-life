@@ -60,8 +60,6 @@
           <%= link_to '戻る', follows_user_path(current_user), class: "btn btn-secondary" %>
         <% elsif @from_followers %>
           <%= link_to '戻る', followers_user_path(current_user), class: "btn btn-secondary" %>
-        <% elsif params[:from_users_list] == 'true' %>
-          <%= link_to '戻る', users_path, class: "btn btn-secondary" %>
         <% end %>
       <% end %>
 

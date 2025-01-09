@@ -18,11 +18,11 @@
             <% @messages.each do |m| %>
               <% if @myUserId == m.user.id %>
                 <div class="d-flex justify-content-end">
-                  <p class="bg-success-subtle p-2 m-3 rounded d-inline-block" ><%= m.message %></p>
+                  <p class="bg-success-subtle p-2 m-2 rounded d-inline-block" ><%= m.message %></p>
                 </div>
               <% else %>
                 <div class="d-flex justify-content-start">
-                  <p class="bg-danger-subtle p-2 m-3 rounded d-inline-block"><%= m.message %></p>
+                  <p class="bg-danger-subtle p-2 m-2 rounded d-inline-block"><%= m.message %></p>
                 </div>
               <% end %>
             <% end %>
