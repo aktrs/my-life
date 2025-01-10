@@ -5,8 +5,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @from_follows = request.referer.present? && request.referer.include?(follows_user_path(current_user))
-    @from_followers = request.referer.present? && request.referer.include?(followers_user_path(current_user))
+
+    @from_follows = referer_contains?(follows_user_path(current_user))
+    @from_followers = referer_contains?(followers_user_path(current_user))
+    @from_user = referer_contains?(user_path(current_user))
+    @from_user_follows = referer_contains?(follows_user_path(@user))
+    @from_user_followers = referer_contains?(followers_user_path(@user))
+
     @graphs = @user.graphs.order(:age)
     @following_users = @user.following_user
     @follower_users = @user.follower_user
@@ -63,5 +68,11 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :profile, :profile_image)
+  end
+
+  def referer_contains?(path)
+    return false unless request.referer.present?
+    referer_uri = URI.parse(request.referer)
+    referer_uri.path.include?(path)
   end
 end
