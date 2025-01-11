@@ -55,19 +55,9 @@
 
     <canvas id="myChart"></canvas>
 
-     <% if current_user != @user %>
-        <% if @from_follows %>
-          <%= link_to '戻る', follows_user_path(current_user), class: "btn btn-secondary" %>
-        <% elsif @from_followers %>
-          <%= link_to '戻る', followers_user_path(current_user), class: "btn btn-secondary" %>
-        <% elsif @from_user %>
-          <%= link_to '戻る', users_path, class: "btn btn-secondary" %>
-        <% elsif @from_user_follows %>
-          <%= link_to '戻る', follows_user_path(@user), class: "btn btn-secondary" %>
-        <% elsif @from_user_followers %>
-          <%= link_to '戻る', followers_user_path(@user), class: "btn btn-secondary" %>
-        <% end %>
-     <% end %>
+    <% if current_user != @user %>
+      <%= link_to "戻る", :back, class:"btn btn-secondary" %>
+    <% end %>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
