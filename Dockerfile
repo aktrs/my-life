@@ -27,6 +27,8 @@ FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config libpq-dev nodejs
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config libpq-dev
     apt-get install --no-install-recommends -y build-essential git pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
@@ -50,6 +52,8 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
+apt-get install --no-install-recommends -y curl libsqlite3-0 libvips libpq5 nodejs && \
+apt-get install --no-install-recommends -y curl libsqlite3-0 libvips libpq-dev && \
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
