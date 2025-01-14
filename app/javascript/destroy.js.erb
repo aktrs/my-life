@@ -1,0 +1,1 @@
+$('.mypage-follow-contents-<%= @user.id %>').html("<%= j(render partial: 'relationships/relationship', locals: {user: @user}) %>")

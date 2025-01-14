@@ -11,3 +11,17 @@ import "controllers"
 
 import "chartkick"
 import "Chart.bundle"
+
+document.addEventListener("turbo:load", function() {
+    // Turboによるページ遷移後に非同期で処理を適用
+    const followButtons = document.querySelectorAll(".follow-button");
+  
+    followButtons.forEach(button => {
+      button.addEventListener("ajax:success", function(event) {
+        const [data, status, xhr] = event.detail;
+        const followButtonContainer = document.querySelector("#follow-button-container");
+        followButtonContainer.innerHTML = data;
+      });
+    });
+  });
+  
