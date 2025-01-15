@@ -39,3 +39,9 @@
 a{
     text-decoration:none !important;
 }
+
+@media screen and (max-width: 575px){
+    .cover-home .text{
+        font-size:25px;
+    }
+}
