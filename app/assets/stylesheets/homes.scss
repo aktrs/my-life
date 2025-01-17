@@ -29,6 +29,7 @@
 
 .text{
     line-height:1.5;
+    font-size:35px;
 }
 
 .highlight{
@@ -38,4 +39,10 @@
 
 a{
     text-decoration:none !important;
+}
+
+@media screen and (max-width:575px){
+    .text{
+        font-size:25px;
+    }
 }
