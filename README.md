@@ -29,6 +29,8 @@
 ## 利用方法
 - 出来事を追加することで、年齢ごとに一覧化して表示します。
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/b29f288f-6d3f-4267-9749-a9810d11765d" />
+- 年齢ごとのページで、出来事の詳細を見ることができます。
+<img width="1438" alt="Image" src="https://github.com/user-attachments/assets/6ba11536-02c3-4197-b695-2d2d831f6933" />
 - マイページで自分のモチベーショングラフの作成ができます。
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/37928f5e-08c9-4996-816d-7c98a9324287" />
 - ユーザーのモチベーショングラフの閲覧が可能であり、ユーザー同士で交流を図ることもできます。
