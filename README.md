@@ -33,6 +33,7 @@
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/37928f5e-08c9-4996-816d-7c98a9324287" />
 - ユーザーのモチベーショングラフの閲覧が可能であり、ユーザー同士で交流を図ることもできます。
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/610c4b61-9d9b-4bde-b03d-2282baeaaa09" />
+<img width="1439" alt="Image" src="https://github.com/user-attachments/assets/7efb0be0-f97e-4082-9115-fcbb4508a108" />
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/f0d9f02c-c0f3-47c9-a095-57bb530ac6aa" />
 
 ## 機能一覧
