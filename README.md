@@ -30,7 +30,7 @@
 - 出来事を追加することで、年齢ごとに一覧化して表示します。
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/b29f288f-6d3f-4267-9749-a9810d11765d" />
 - マイページで自分のモチベーショングラフの作成ができます。
-<img width="1439" alt="Image" src="https://github.com/user-attachments/assets/e9a1c615-3eaa-44a8-b37f-dd09c3702e8f" />
+<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/37928f5e-08c9-4996-816d-7c98a9324287" />
 - ユーザーのモチベーショングラフの閲覧が可能であり、ユーザー同士で交流を図ることもできます。
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/610c4b61-9d9b-4bde-b03d-2282baeaaa09" />
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/f0d9f02c-c0f3-47c9-a095-57bb530ac6aa" />
